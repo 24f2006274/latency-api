@@ -16,7 +16,7 @@ DATA_PATH = os.path.join(os.path.dirname(__file__), "telemetry.json")
 with open(DATA_PATH) as f:
     data = json.load(f)
 
-@app.post("/api/latency")
+@app.post("/latency")
 async def latency(payload: dict):
     regions = payload["regions"]
     threshold = payload["threshold_ms"]
