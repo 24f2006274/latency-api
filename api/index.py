@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import json, statistics
+import json, statistics, os
 
 app = FastAPI()
 
@@ -11,7 +11,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-with open("api/telemetry.json") as f:
+DATA_PATH = os.path.join(os.path.dirname(__file__), "telemetry.json")
+
+with open(DATA_PATH) as f:
     data = json.load(f)
 
 @app.post("/api/latency")
